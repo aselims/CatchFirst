@@ -1,5 +1,7 @@
 package com.catchfirst.catchfirst;
 
+import android.content.Context;
+
 /**
  * Created by aselims on 15/11/15.
  */
@@ -9,6 +11,7 @@ public interface Contract {
         void showDistance(double distance);
 
         void showSafe();
+        void showDetectionMode();
 
         void showBoom();
 
@@ -20,9 +23,11 @@ public interface Contract {
     interface presenter {
         void start(view view);
 
+
+
     }
 
     interface scanner {
-        double getDistance();
+        void startScan(Context context, final Scanner.DistanceCallback distanceCallback);
     }
 }
