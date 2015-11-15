@@ -7,11 +7,12 @@ import android.content.Context;
  */
 public class ScanPresenter implements Contract.presenter, Scanner.DistanceCallback {
 
-    double detectionDistance = 5;
-    double boomDistance = 2;
+    double detectionDistance = 20;
+    double boomDistance = 1;
     Contract.scanner scanner;
     private boolean activated = true;
     private Contract.view view;
+    private boolean lost;
 
 
     @Override
@@ -23,26 +24,35 @@ public class ScanPresenter implements Contract.presenter, Scanner.DistanceCallba
 
     }
 
+    @Override
+    public void restart() {
+        activated = true;
+        lost = false;
+    }
+
     private void deactivate() {
-//        activated = false;
+        activated = false;
 
     }
 
     @Override
     public void onDistanceChanged(double distance) {
+        if(lost)
+            return;
         if(activated) {
-
             if (distance > detectionDistance) {
                 view.showSafe();
             } else if (distance <= detectionDistance && distance > boomDistance) {
+                view.showDetectionMode(view.isButtonPressed());
                 view.showDistance(distance);
-                view.showDetectionMode();
             } else if (distance <= boomDistance) {
                 if (view.isButtonPressed()) {
                     deactivate();
                     view.showDeactivated();
+                    view.showDistance(distance);
                 } else {
                     view.showBoom();
+                    lost = true;
                 }
             }
         }else{

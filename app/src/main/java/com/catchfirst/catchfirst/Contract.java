@@ -11,7 +11,7 @@ public interface Contract {
         void showDistance(double distance);
 
         void showSafe();
-        void showDetectionMode();
+        void showDetectionMode(boolean buttonPressed);
 
         void showBoom();
 
@@ -23,7 +23,7 @@ public interface Contract {
     interface presenter {
         void start(view view);
 
-
+        void restart();
 
     }
 

@@ -9,7 +9,6 @@ import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.Context;
 import android.os.ParcelUuid;
-import android.speech.tts.TextToSpeech;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -19,6 +18,8 @@ import java.util.List;
  * Created by aselims on 15/11/15.
  */
 public class Scanner implements Contract.scanner {
+
+    private static final String OTHERADDRESS = "D7:C0:EF:57:4E:07";
 
     private static final String TAG = "BEACON";
     private BluetoothManager bluetoothManager;
@@ -85,7 +86,7 @@ public class Scanner implements Contract.scanner {
                 int txPower;
                 double distance;
                 String deviceAddress = result.getDevice().getAddress();
-                if (deviceAddress.equals("F9:82:48:1C:E5:D7")) {
+                if (deviceAddress.equals(OTHERADDRESS)) {
                     Log.i(TAG, String.valueOf(result.getRssi()));
                     rssi = result.getRssi();
 

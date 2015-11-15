@@ -25,8 +25,15 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_stop_scan"
-        android:text="@string/stop_scan"
+        android:id="@+id/btn_deactivate"
+        android:text="@string/deactivate"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_restart"
+        android:text="@string/restart"
         />
 
 
