@@ -3,23 +3,27 @@ var map;
 // Initializing map
 
 function initMap() {
+
+    var customMapType = new google.maps.StyledMapType(
+        [{"featureType":"water","elementType":"all","stylers":[{"hue":"#001204"},{"saturation":100},{"lightness":-95},{"visibility":"on"}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"hue":"#007F1E"},{"saturation":100},{"lightness":-72},{"visibility":"on"}]},{"featureType":"landscape.natural","elementType":"all","stylers":[{"hue":"#00C72E"},{"saturation":100},{"lightness":-59},{"visibility":"on"}]},{"featureType":"road","elementType":"all","stylers":[{"hue":"#002C0A"},{"saturation":100},{"lightness":-87},{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#00A927"},{"saturation":100},{"lightness":-58},{"visibility":"on"}]}],
+         {
+                  name: 'Custom Style'
+         }
+    );
+
+    var customMapTypeId = 'custom_style';
+
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 52.5124522, lng: 13.4309408},
         zoom: 19,
-        disableDefaultUI: true
+        center: {lat: 52.5124522, lng: 13.4309408},
+        disableDefaultUI: true,
+        mapTypeControlOptions: {
+            mapTypeIds: [google.maps.MapTypeId.ROADMAP, customMapTypeId]
+        }
     });
 
-    map.data.setStyle({
-        icon: {
-            path: google.maps.SymbolPath.CIRCLE,
-            scale: 3,
-            strokeColor: 'red',
-            strokeWeight: 1,
-            fillColor: 'red',
-            fillOpacity: 0.5
-        },
-        zIndex: 0
-    });
+    map.mapTypes.set(customMapTypeId, customMapType);
+    map.setMapTypeId(customMapTypeId);
 
 // Beacons data
 
