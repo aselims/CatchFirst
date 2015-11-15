@@ -1,7 +1,9 @@
 package com.catchfirst.catchfirst;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
@@ -75,6 +77,15 @@ public class MainActivity extends AppCompatActivity implements Contract.view {
                     buttonPressed = false;
                 Log.i(TAG, "buttonPressed: " + buttonPressed);
                 return false;
+            }
+        });
+
+        findViewById(R.id.btn_map).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse("http://10.100.220.150/hack_2015/"));
+                startActivity(browser);
+
             }
         });
 

@@ -10,7 +10,7 @@ public class ScanPresenter implements Contract.presenter, Scanner.DistanceCallba
     double detectionDistance = 20;
     double boomDistance = 1;
     Contract.scanner scanner;
-    private boolean activated = true;
+    private boolean activated = false;
     private Contract.view view;
     private boolean lost;
 
