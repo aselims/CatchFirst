@@ -1,5 +1,7 @@
 package com.catchfirst.catchfirst;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -52,32 +55,34 @@ public class MainActivity extends AppCompatActivity implements Contract.view {
 		});
 
 		findViewById(R.id.btn_restart).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				state = State.safe;
-				scanPresenter.restart();
-			}
-		});
+            @Override
+            public void onClick(View view) {
+                state = State.safe;
+                scanPresenter.restart();
+                findViewById(R.id.layout).setBackgroundColor(Color.BLACK);
+
+
+            }
+        });
 
 		findViewById(R.id.btn_deactivate).setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View view, MotionEvent motionEvent) {
-				int action = motionEvent.getAction();
-				if (action == MotionEvent.ACTION_DOWN)
-					buttonPressed = true;
-				if (action == MotionEvent.ACTION_UP)
-					buttonPressed = false;
-				Log.i(TAG, "buttonPressed: " + buttonPressed);
-				return false;
-			}
-		});
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                int action = motionEvent.getAction();
+                if (action == MotionEvent.ACTION_DOWN)
+                    buttonPressed = true;
+                if (action == MotionEvent.ACTION_UP)
+                    buttonPressed = false;
+                Log.i(TAG, "buttonPressed: " + buttonPressed);
+                return false;
+            }
+        });
 
 		scanPresenter.start(this);
 
 
 		distanceTV = (TextView) findViewById(R.id.tv_distance);
 		msgTV = (TextView) findViewById(R.id.tv_msg);
-
 
        /* if (distance > 4) {
 			if (!textToSpeech.isSpeaking()) {
@@ -99,6 +104,11 @@ public class MainActivity extends AppCompatActivity implements Contract.view {
 
 	@Override
 	public void showDistance(double distance) {
+        ProgressBar progress = ((ProgressBar)findViewById(R.id.progressBar));
+        progress.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
+
+        progress.setProgress((int)(100 - (100 * distance / 20)));
+
 		distanceTV.setText(String.valueOf(distance));
 	}
 
@@ -137,7 +147,9 @@ public class MainActivity extends AppCompatActivity implements Contract.view {
 		state = State.lost;
 		msgTV.setText("Boom!");
 		showEmptyDistance();
-	}
+        findViewById(R.id.layout).setBackgroundColor(Color.RED);
+
+    }
 
 	@Override
 	public void showDeactivated() {
