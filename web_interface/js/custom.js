@@ -1,4 +1,5 @@
 var map;
+var mapCenter = {lat: 52.5124522, lng: 13.4309408};
 
 var beacon_1;
 var beacon_1_details;
@@ -80,7 +81,7 @@ function initMap() {
 
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 18,
-        center: {lat: 52.5124522, lng: 13.4309408},
+        center: mapCenter,
         mapTypeControlOptions: {
             mapTypeIds: [google.maps.MapTypeId.ROADMAP, customMapTypeId]
         }
@@ -142,5 +143,21 @@ $(document).ready(function(){
     $('.trigger.reset').click(function(e){
         e.preventDefault();
         resetMap();
+    })
+
+    $('.trigger.up').click(function(e){
+        e.preventDefault();
+    })
+
+    $('.trigger.down').click(function(e){
+        e.preventDefault();
+    })
+
+    $('.trigger.left').click(function(e){
+        e.preventDefault();
+    })
+
+    $('.trigger.right').click(function(e){
+        e.preventDefault();
     })
 })

@@ -1,3 +1,7 @@
+.hidden {
+    display: none;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -59,7 +63,7 @@ html, body {
     position: absolute;
     margin-left: -225px;
     left: 50%;
-    margin-top: -345px;
+    margin-top: -380px;
     top: 50%;
     overflow: hidden;
     border-radius: 10px;
