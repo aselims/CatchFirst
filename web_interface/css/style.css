@@ -1,0 +1,33 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.device {
+    width: 700px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -350px;
+    z-index: 0;
+}
+
+#map {
+    width: 480px;
+    height: 485px;
+    position: absolute;
+    margin-left: -225px;
+    left: 50%;
+    margin-top: -345px;
+    top: 50%;
+    overflow: hidden;
+    border-radius: 10px;
+    border-bottom-right-radius: 80px;
+    z-index: 100;
+}
+
+.gmnoprint {
+    display: none;
+}
