@@ -14,9 +14,8 @@ function initMap() {
     var customMapTypeId = 'custom_style';
 
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 19,
+        zoom: 18,
         center: {lat: 52.5124522, lng: 13.4309408},
-        disableDefaultUI: true,
         mapTypeControlOptions: {
             mapTypeIds: [google.maps.MapTypeId.ROADMAP, customMapTypeId]
         }
