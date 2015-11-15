@@ -5,19 +5,24 @@ package com.catchfirst.catchfirst;
  */
 public interface Contract {
 
-    interface view{
-        void showDistance();
+    interface view {
+        void showDistance(double distance);
+
+        void showSafe();
+
         void showBoom();
+
         void showDeactivated();
+
         boolean isButtonPressed();
     }
 
-    interface presenter{
+    interface presenter {
         void start(view view);
 
     }
 
-    interface scanner{
+    interface scanner {
         double getDistance();
     }
 }
