@@ -1,5 +1,20 @@
 var map;
 
+var beacon_1;
+var beacon_1_details;
+var beacon_2;
+var beacon_2_details;
+
+function locate(beacon) {
+        map.setZoom(23);
+        map.panTo(beacon.position);
+}
+
+function resetMap() {
+        map.setZoom(18);
+        map.panTo({lat: 52.5124522, lng: 13.4309408});
+}
+
 // Initializing map
 
 function initMap() {
@@ -78,14 +93,14 @@ function initMap() {
 
 /* Beacon 1 */
 
-    var beacon_1 = new google.maps.Marker({
+    beacon_1 = new google.maps.Marker({
         position: {lat: 52.512597, lng: 13.431352},
         animation: google.maps.Animation.DROP,
         map: map,
         title: 'Bea'
     });
 
-    var beacon_1_details= new google.maps.InfoWindow({
+    beacon_1_details= new google.maps.InfoWindow({
         content: "This is Bea"
     });
     
@@ -95,18 +110,37 @@ function initMap() {
 
 /* Beacon 2 */
 
-    var beacon_2 = new google.maps.Marker({
+    beacon_2 = new google.maps.Marker({
         position: {lat: 52.512244, lng: 13.431205},
         animation: google.maps.Animation.DROP,
         map: map,
         title: 'Connie'
     });
 
-    var beacon_2_details= new google.maps.InfoWindow({
+    beacon_2_details = new google.maps.InfoWindow({
         content: "This is Connie"
     });
     
     beacon_2.addListener('click', function() {
         beacon_2_details.open(map, beacon_2);
     });
+
 }
+
+$(document).ready(function(){
+
+    $('.trigger.a').click(function(e){
+        e.preventDefault();
+        locate(beacon_1);
+    })
+
+    $('.trigger.b').click(function(e){
+        e.preventDefault();
+        locate(beacon_2);
+    })
+
+    $('.trigger.reset').click(function(e){
+        e.preventDefault();
+        resetMap();
+    })
+})
